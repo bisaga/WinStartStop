@@ -2,7 +2,6 @@
 *  MIT License
 *  Copyright (c) 2017 Igor Babic
 */
-
 using System;
 using System.ServiceProcess;
 
