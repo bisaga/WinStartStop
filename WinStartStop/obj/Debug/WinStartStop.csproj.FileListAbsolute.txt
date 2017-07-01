@@ -1,9 +1,0 @@
-C:\Users\igorb\Source\Repos\WinStartStop\WinStartStop\bin\Debug\WinStartStop.exe.config
-C:\Users\igorb\Source\Repos\WinStartStop\WinStartStop\bin\Debug\WinStartStop.exe
-C:\Users\igorb\Source\Repos\WinStartStop\WinStartStop\bin\Debug\WinStartStop.pdb
-C:\Users\igorb\Source\Repos\WinStartStop\WinStartStop\obj\Debug\WinStartStop.exe
-C:\Users\igorb\Source\Repos\WinStartStop\WinStartStop\obj\Debug\WinStartStop.pdb
-C:\Users\igorb\Source\Repos\WinStartStop\WinStartStop\bin\Debug\BatchFiles\install_service.bat
-C:\Users\igorb\Source\Repos\WinStartStop\WinStartStop\bin\Debug\BatchFiles\shutdown.bat
-C:\Users\igorb\Source\Repos\WinStartStop\WinStartStop\bin\Debug\BatchFiles\startup.bat
-C:\Users\igorb\Source\Repos\WinStartStop\WinStartStop\bin\Debug\BatchFiles\uninstall_service.bat
