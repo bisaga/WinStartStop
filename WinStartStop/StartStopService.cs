@@ -14,35 +14,49 @@ namespace WinStartStop
         private String folderName = "C:\\WinStartStop";
         private String startupName = "startup.bat";
         private String shutdownName = "shutdown.bat";
+        private EventLog eventLog;
+        private String scriptFile;
 
-        public StartStopService(){}
+        public StartStopService(){
+            eventLog = new EventLog();
+            if (!EventLog.SourceExists("WidowsStartStop"))
+            {
+                EventLog.CreateEventSource("WidowsStartStop", "Application");
+            }
+            eventLog.Source = "WidowsStartStop";
+            eventLog.Log = "Application";
+        }
 
         protected override void OnStart(string[] args)
         {
+            eventLog.WriteEntry("Windows Startup On");
             folderName = args.Length > 0 ? args[0] : folderName;
-            if (File.Exists(Path.Combine(folderName, startupName)))
+            scriptFile = Path.Combine(folderName, startupName);
+            if (File.Exists(scriptFile))
             {
-                RunScript(startupName);
+                RunScript(scriptFile);
+                eventLog.WriteEntry(String.Format("Windows Startup run {0} script.", scriptFile));
             }
 
         }
 
         protected override void OnStop()
         {
-            if (File.Exists(Path.Combine(folderName, shutdownName)))
+            eventLog.WriteEntry("Windows Shutdown On.");
+            scriptFile = Path.Combine(folderName, shutdownName);
+            if (File.Exists(scriptFile))
             {
-                RunScript(shutdownName);
+                RunScript(scriptFile);
+                eventLog.WriteEntry(String.Format("Windows Shutdown run {0} script.", scriptFile));
             }
         }
 
-        private void RunScript(string processFileName)
+        private void RunScript(String scriptFilePath)
         {
-            string scriptFileName = System.IO.Path.Combine(folderName, processFileName);
-
             var startInfo = new ProcessStartInfo
             {
                 FileName = "cmd.exe",
-                Arguments = "/C " + scriptFileName,
+                Arguments = String.Format("/C {0}", scriptFilePath),
                 CreateNoWindow = true,
                 ErrorDialog = false,
                 RedirectStandardError = true,
@@ -53,7 +67,15 @@ namespace WinStartStop
 
             var process = new Process();
             process.StartInfo = startInfo;
-            process.Start();
+            try
+            {
+                process.Start();
+            }
+            catch (Exception ex)
+            {
+                eventLog.WriteEntry(ex.Message);
+                eventLog.WriteEntry(ex.InnerException.Message);
+            }
         }
     }
 }

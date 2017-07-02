@@ -1,2 +1,4 @@
 ﻿/WinStartStop/obj/*
 /WinStartStop/obj/Debug/*
+
+Response without gzip: 328 bytes

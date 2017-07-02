@@ -31,7 +31,13 @@ Startup.bat example batch file starting VirtualBox virtual machine:
 "C:\Program Files\Oracle\VirtualBox\VBoxManage.exe" startvm "Ubuntu1610Server" --type "headless"
 
 Shutdown.bat example batch file shutdown VirtualBox virtual machine: 
+
 "C:\Program Files\Oracle\VirtualBox\VBoxManage.exe" "controlvm"  "Ubuntu1610Server" "poweroff"
+
+*** VM shutdown this way DOESNT WORK !!!! ***
+Virtual Box claim that user who start VMs is allowed to manage them (as shutdown for example) 
+Even if I start service as "my user" with full admin rights, on the shutdown event VBoxManage.exe doesn't find active headless virtual machine. 
+Seems like a bug to me ? 
 
  
 
