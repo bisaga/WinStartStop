@@ -21,10 +21,10 @@ namespace WinStartStop
             serviceInstaller = new ServiceInstaller();
 
             // The service runs under the service account.
-            processInstaller.Account = ServiceAccount.LocalService;
+            processInstaller.Account = ServiceAccount.LocalSystem;
 
             // The service is started manually.
-            serviceInstaller.StartType = ServiceStartMode.Automatic;
+            serviceInstaller.StartType = ServiceStartMode.Manual;
 
             // ServiceName must equal those on ServiceBase derived classes.
             serviceInstaller.ServiceName = "Windows Startup Shutdown Service";
